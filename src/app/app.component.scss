@@ -1,0 +1,34 @@
+.app-shell {
+    display: flex;
+    height: calc(100vh - 64px); /* Use height instead of min-height */
+    background: theme('colors.slate.100');
+    @apply dark:bg-slate-950;
+  }
+  
+  .app-shell__sidebar {
+    flex-shrink: 0;
+    height: 100%; /* Ensure sidebar takes full height */
+  }
+  
+  .app-shell__content {
+    flex: 1;
+    padding: 1.5rem;
+    background: theme('colors.white');
+    border-left: 1px solid theme('colors.slate.200');
+    @apply dark:bg-slate-900 dark:border-slate-800;
+    overflow-y: auto; /* Allow content to scroll if needed */
+  }
+  
+  /* Mobile: stack sidebar and content */
+  @media (max-width: 1023px) {
+    .app-shell {
+      flex-direction: column;
+      height: auto;
+      min-height: calc(100vh - 64px);
+    }
+    
+    .app-shell__sidebar {
+      height: auto;
+      max-height: 50vh; /* Limit sidebar height on mobile */
+    }
+  }

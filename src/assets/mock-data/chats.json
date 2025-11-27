@@ -1,0 +1,28 @@
+{
+    "chats": [
+      {
+        "id": "1",
+        "title": "Gehaltsgespräch tipps",
+        "provider": "Azure",
+        "model": "GPT-4 Turbo",
+        "lastUpdated": "2025-02-21T10:15:00Z",
+        "pinned": true
+      },
+      {
+        "id": "2",
+        "title": "Ist klauen illegal?",
+        "provider": "OpenAI",
+        "model": "GPT-4.1",
+        "lastUpdated": "2025-02-20T08:42:00Z",
+        "pinned": false
+      },
+      {
+        "id": "3",
+        "title": "Verfasse mir folgenden Abschnitt …",
+        "provider": "Vertex AI",
+        "model": "Gemini 1.5 Pro",
+        "lastUpdated": "2025-02-18T18:27:00Z",
+        "pinned": false
+      }
+    ]
+  }

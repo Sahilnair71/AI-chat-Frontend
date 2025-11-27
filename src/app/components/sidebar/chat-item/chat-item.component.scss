@@ -1,0 +1,17 @@
+:host {
+    @apply block;
+  }
+  
+  ::ng-deep .dark-menu {
+    .mat-mdc-menu-panel {
+      @apply dark:bg-gray-800;
+    }
+  
+    .mat-mdc-menu-item {
+      @apply dark:text-white;
+      
+      &:hover {
+        @apply dark:bg-gray-700;
+      }
+    }
+  }

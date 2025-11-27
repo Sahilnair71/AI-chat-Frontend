@@ -1,0 +1,16 @@
+.sidebar-container {
+    @apply flex flex-col h-full bg-slate-50 dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800;
+    min-width: 280px;
+    max-width: 320px;
+  }
+  
+  .sidebar-header {
+    @apply flex flex-col gap-3 p-4 flex-shrink-0;
+    border-bottom: 1px solid theme('colors.slate.200');
+    @apply dark:border-gray-700;
+  }
+  
+  .sidebar-body {
+    @apply flex-1 min-h-0 overflow-hidden;
+    padding: 1rem;
+  }

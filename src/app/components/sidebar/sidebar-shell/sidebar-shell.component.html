@@ -1,0 +1,10 @@
+<aside class="sidebar-container">
+    <div class="sidebar-header">
+      <app-new-button (create)="newChat()"></app-new-button>
+      <app-chat-search (search)="updateSearch($event)"></app-chat-search>
+    </div>
+    
+    <div class="sidebar-body">
+      <app-chat-list [searchTerm]="searchTerm"></app-chat-list>
+    </div>
+  </aside>

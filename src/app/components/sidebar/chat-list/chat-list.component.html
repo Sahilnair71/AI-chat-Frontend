@@ -1,0 +1,38 @@
+<div class="chat-list-container">
+  <ng-container *ngIf="!isLoading(); else loading">
+    <ng-container *ngIf="!error(); else failure">
+      <ng-container *ngIf="filteredChats().length; else empty">
+        <ul class="chat-list">
+          <li *ngFor="let chat of filteredChats()">
+            <app-chat-item
+              [chat]="chat"
+              (rename)="renameChat($event)"
+              (remove)="deleteChat($event)"
+            ></app-chat-item>
+          </li>
+        </ul>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #loading>
+  <div class="state-message">
+    <div class="text-sm text-slate-500 dark:text-white">Loading chats…</div>
+  </div>
+</ng-template>
+
+<ng-template #failure>
+  <div class="state-message">
+    <div class="text-sm text-red-500 dark:text-red-400">
+      {{ error() }}
+      <button class="underline ml-2 hover:text-red-600 dark:hover:text-red-300 dark:text-red-400" (click)="chatStore.loadChats()">Retry</button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #empty>
+  <div class="state-message">
+    <div class="text-sm text-slate-500 dark:text-white text-center">No chats found.</div>
+  </div>
+</ng-template>
