@@ -12,7 +12,7 @@
     <mat-icon class="dark:text-white">more_vert</mat-icon>
   </button>
 
-  <mat-menu #menu="matMenu" class="dark-menu">
+  <mat-menu #menu="matMenu" class="dark-menu" >
     <button mat-menu-item [matMenuTriggerFor]="renameMenu" class="dark:text-white">
       <mat-icon class="dark:text-white">edit</mat-icon>
       <span class="dark:text-white">Rename</span>
@@ -23,7 +23,7 @@
     </button>
   </mat-menu>
 
-  <mat-menu #renameMenu="matMenu" class="dark-menu">
+  <mat-menu #renameMenu="matMenu" class="dark-menu" >
     <div class="px-3 py-2 w-64 dark:bg-gray-800">
       <mat-form-field appearance="outline" class="w-full mb-2">
         <mat-label class="dark:text-white">Rename chat</mat-label>

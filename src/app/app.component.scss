@@ -1,34 +1,26 @@
 .app-shell {
-    display: flex;
-    height: calc(100vh - 64px); /* Use height instead of min-height */
-    background: theme('colors.slate.100');
-    @apply dark:bg-slate-950;
+  @apply flex mt-16; /* mt-16 = 64px for fixed navbar */
+  height: calc(100vh - 64px);
+  @apply bg-slate-100 dark:bg-slate-800;
+}
+
+.app-shell__sidebar {
+  @apply flex-shrink-0 h-full;
+}
+
+.app-shell__content {
+  @apply flex-1 p-6 bg-white dark:bg-gray-800 border-l border-slate-200 dark:border-gray-700 overflow-y-auto;
+}
+
+/* Mobile: stack sidebar and content */
+@media (max-width: 1023px) {
+  .app-shell {
+    @apply flex-col;
+    height: auto;
+    min-height: calc(100vh - 64px);
   }
   
   .app-shell__sidebar {
-    flex-shrink: 0;
-    height: 100%; /* Ensure sidebar takes full height */
+    @apply h-auto max-h-[50vh];
   }
-  
-  .app-shell__content {
-    flex: 1;
-    padding: 1.5rem;
-    background: theme('colors.white');
-    border-left: 1px solid theme('colors.slate.200');
-    @apply dark:bg-slate-900 dark:border-slate-800;
-    overflow-y: auto; /* Allow content to scroll if needed */
-  }
-  
-  /* Mobile: stack sidebar and content */
-  @media (max-width: 1023px) {
-    .app-shell {
-      flex-direction: column;
-      height: auto;
-      min-height: calc(100vh - 64px);
-    }
-    
-    .app-shell__sidebar {
-      height: auto;
-      max-height: 50vh; /* Limit sidebar height on mobile */
-    }
-  }
+}

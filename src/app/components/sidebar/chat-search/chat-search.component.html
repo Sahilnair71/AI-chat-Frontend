@@ -1,10 +1,11 @@
 <mat-form-field appearance="outline" class="w-full search-field">
-  <mat-label class="dark:text-white">Search chats</mat-label>
+  
   <input 
     matInput 
     [formControl]="query" 
     (input)="onInput(query.value ?? '')"
-    class="dark:text-white border-white"
+    class="dark:text-white dark:border-white"
+    placeholder="Search Chats"
   />
   <button 
     mat-icon-button 

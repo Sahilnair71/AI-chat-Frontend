@@ -3,12 +3,14 @@
   }
   
   ::ng-deep .search-field {
+
+    
     .mat-mdc-form-field {
       @apply dark:bg-gray-800;
     }
   
     .mat-mdc-text-field-wrapper {
-      @apply dark:bg-gray-800;
+      @apply dark:bg-gray-950;
     }
   
     .mat-mdc-form-field-input-control {
@@ -19,7 +21,7 @@
       @apply dark:text-white;
       
       &::placeholder {
-        @apply dark:text-gray-400;
+        @apply dark:text-white;
       }
     }
   
@@ -28,10 +30,26 @@
     }
   
     .mat-mdc-form-field-outline {
-      @apply dark:text-gray-600;
+      @apply dark:text-white;
+      color: inherit;
+    }
+    .mat-mdc-form-field-outline-thick {
+      @apply dark:text-white;
+      color: inherit;
     }
   
     .mat-mdc-form-field-focus-overlay {
       @apply dark:bg-gray-800;
     }
+    .mdc-notched-outline {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        @apply dark:border-white;
+        border-color: white !important;
+      }
+    }
   }
+  
+
+  

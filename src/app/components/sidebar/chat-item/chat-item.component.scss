@@ -4,7 +4,7 @@
   
   ::ng-deep .dark-menu {
     .mat-mdc-menu-panel {
-      @apply dark:bg-gray-800;
+      @apply bg-white dark:bg-gray-800;
     }
   
     .mat-mdc-menu-item {

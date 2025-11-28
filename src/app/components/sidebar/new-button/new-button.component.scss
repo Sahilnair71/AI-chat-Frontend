@@ -1,0 +1,20 @@
+:host {
+  @apply block w-full;
+  
+  button {
+    @apply w-full;
+  }
+}
+
+::ng-deep .new-chat-button {
+  /* Light mode - keep default primary color */
+  @apply bg-blue-600 text-white hover:bg-blue-500;
+
+  /* Dark mode - white button */
+  @apply dark:bg-gray-950 dark:text-white dark:hover:bg-gray-800;
+  
+  /* Ensure Material button respects our styles */
+  .mdc-button__label {
+    @apply dark:text-white;
+  }
+}
