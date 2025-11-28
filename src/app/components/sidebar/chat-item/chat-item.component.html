@@ -12,7 +12,18 @@
     <mat-icon class="dark:text-white">more_vert</mat-icon>
   </button>
 
-  <mat-menu #menu="matMenu" class="dark-menu" >
+  <mat-menu #menu="matMenu" class="dark-menu ">
+    <button mat-menu-item (click)="openRenameDialog()">
+      <mat-icon>edit</mat-icon>
+      <span>Rename</span>
+    </button>
+    <button mat-menu-item (click)="openDeleteDialog()">
+      <mat-icon>delete</mat-icon>
+      <span class="text-red-500 dark:text-red-400">Delete</span>
+    </button>
+  </mat-menu>
+
+  <!-- <mat-menu #menu="matMenu" class="solid-menu" >
     <button mat-menu-item [matMenuTriggerFor]="renameMenu" class="dark:text-white">
       <mat-icon class="dark:text-white">edit</mat-icon>
       <span class="dark:text-white">Rename</span>
@@ -21,9 +32,9 @@
       <mat-icon class="dark:text-white">delete</mat-icon>
       <span class="text-red-500 dark:text-red-400">Delete</span>
     </button>
-  </mat-menu>
+  </mat-menu> -->
 
-  <mat-menu #renameMenu="matMenu" class="dark-menu" >
+  <!-- <mat-menu #renameMenu="matMenu" class="dark-menu" >
     <div class="px-3 py-2 w-64 dark:bg-gray-800">
       <mat-form-field appearance="outline" class="w-full mb-2">
         <mat-label class="dark:text-white">Rename chat</mat-label>
@@ -34,5 +45,5 @@
         <button mat-flat-button color="primary" (click)="submitRename()" [disabled]="!editTitle.trim()">Save</button>
       </div>
     </div>
-  </mat-menu>
+  </mat-menu> -->
 </div>

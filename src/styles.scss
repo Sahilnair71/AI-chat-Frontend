@@ -20,12 +20,18 @@ body {
       --grad-via:  #8b5cf6;   /* violet-500 */
       --grad-to:   #f472b6;   /* fuchsia-400/500 */
       --text-main: #0a0a0a;   /* black-ish for light */
+      --menu-bg: #ffffff;
+      --menu-fg: #0f172a;
+      --menu-hover: #f1f5f9;
     }
     .dark {
       --grad-from: #22d3ee;   /* cyan-400 */
       --grad-via:  #8b5cf6;   /* violet-500 */
       --grad-to:   #a78bfa;   /* violet-400 */
       --text-main: #e5e7eb;   /* slate-200 for dark */
+      --menu-bg: #1f2937;
+      --menu-fg: #f8fafc;
+      --menu-hover: #374151;
     }
   }
 
