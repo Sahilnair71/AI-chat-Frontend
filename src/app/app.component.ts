@@ -1,4 +1,4 @@
-import { Component, effect, inject, PLATFORM_ID } from '@angular/core';
+import { Component, effect, inject, PLATFORM_ID,signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { ThemeStore } from './store/themestore';
@@ -17,6 +17,8 @@ export class AppComponent {
   title = 'ai-chat-bot';
   private readonly themeStore = inject(ThemeStore);
   private readonly platformId = inject(PLATFORM_ID);
+  sidebarOpen = signal(false);
+
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
       effect(() => {
@@ -24,5 +26,13 @@ export class AppComponent {
         document.body.classList.toggle('dark', isDarkMode);
       });
     }
+  }
+
+  toggleSidebar() {
+    this.sidebarOpen.set(!this.sidebarOpen());
+  }
+
+  closeSidebar() {
+    this.sidebarOpen.set(false);
   }
 }

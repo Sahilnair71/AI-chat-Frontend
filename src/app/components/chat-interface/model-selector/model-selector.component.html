@@ -1,5 +1,5 @@
 <div class="model-selector-container">
-    <div class="selector-group">
+    <div class="selector-group desktop-view">
       <mat-form-field appearance="fill" class="selector-field">
         <mat-label class="lable-color">Model</mat-label>
         <mat-select [value]="selectedModel" (selectionChange)="onModelChange($event.value)">
@@ -35,9 +35,23 @@
         </mat-select>
       </mat-form-field>
     </div>
-  
-    <button mat-stroked-button class="ai-briefing-button">
-      <mat-icon>psychology</mat-icon>
-      <span>AI-Briefing</span>
-    </button>
+
+  <!-- Mobile View -->
+
+    <button 
+    mat-stroked-button 
+    class="mobile-selector-button mobile-view"
+    (click)="openMobileSelectorsDialog()"
+  >
+    <mat-icon>tune</mat-icon>
+    <span>Settings</span>
+    <span class="selected-values">
+      {{ selectedModel }} • {{ selectedProvider }} • {{ creativity }} .{{ selectedProduct }}
+    </span>
+  </button>
+
+  <button mat-stroked-button class="ai-briefing-button">
+    <mat-icon>psychology</mat-icon>
+    <span>AI-Briefing</span>
+  </button>
   </div>

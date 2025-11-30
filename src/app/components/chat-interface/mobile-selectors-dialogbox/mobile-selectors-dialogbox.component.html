@@ -1,0 +1,51 @@
+<div class="mobile-selectors-dialog-content">
+    <div class="dialog-header">
+      <h2 class="dialog-title">Settings</h2>
+      <button mat-icon-button (click)="close()" class="close-button" aria-label="Close">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+    
+    <div class="dialog-body">
+      <mat-form-field appearance="fill" class="selector-field-full">
+        <mat-label>Model</mat-label>
+        <mat-select [(value)]="data.selectedModel">
+          <mat-option *ngFor="let model of data.models" [value]="model">
+            {{ model }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="selector-field-full">
+        <mat-label>Provider</mat-label>
+        <mat-select [(value)]="data.selectedProvider">
+          <mat-option *ngFor="let provider of data.providers" [value]="provider">
+            {{ provider }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="selector-field-full">
+        <mat-label>Creativity</mat-label>
+        <mat-select [(value)]="data.creativity">
+          <mat-option *ngFor="let level of data.creativityLevels" [value]="level.value">
+            {{ level.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="selector-field-full">
+        <mat-label>Product</mat-label>
+        <mat-select [(value)]="data.selectedProduct">
+          <mat-option *ngFor="let product of data.products" [value]="product">
+            {{ product }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="dialog-actions">
+      <button mat-button (click)="close()">Cancel</button>
+      <button mat-raised-button color="primary" (click)="save()">Apply</button>
+    </div>
+  </div>

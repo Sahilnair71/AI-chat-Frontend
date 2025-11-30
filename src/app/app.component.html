@@ -8,10 +8,32 @@
   </section>
 </main> -->
 
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar>
 <main class="app-shell">
   <app-sidebar-shell class="app-shell__sidebar"></app-sidebar-shell>
   <section class="app-shell__content">
+    <app-chat-interface></app-chat-interface>
+  </section>
+</main> -->
+
+<app-navbar [sidebarOpen]="sidebarOpen()" (toggleSidebar)="toggleSidebar()"></app-navbar>
+<main class="app-shell">
+  <!-- Mobile overlay backdrop -->
+  <div 
+    class="sidebar-overlay" 
+    [class.active]="sidebarOpen()"
+    (click)="closeSidebar()"
+  ></div>
+  
+  <!-- Sidebar with mobile toggle -->
+  <app-sidebar-shell 
+    class="app-shell__sidebar"
+    [class.open]="sidebarOpen()"
+    [isOpen]="sidebarOpen()"
+    (close)="closeSidebar()"
+  ></app-sidebar-shell>
+  
+  <section class="app-shell__content" (click)="closeSidebar()">
     <app-chat-interface></app-chat-interface>
   </section>
 </main>

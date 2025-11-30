@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, EventEmitter, Input,Output } from '@angular/core';
 import { ThemeStore } from '../../store/themestore';
 import {MatIconModule} from '@angular/material/icon';
 
@@ -9,12 +9,13 @@ import {MatIconModule} from '@angular/material/icon';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  isMobileMenuOpen = signal(false);
-
   public readonly themeStore = inject(ThemeStore);
 
+  @Input() sidebarOpen = false;
+  @Output() toggleSidebar = new EventEmitter<void>();
 
-  toggleMobileMenu() {
-      this.isMobileMenuOpen.set(!this.isMobileMenuOpen());
+
+  onToggleSidebar() {
+    this.toggleSidebar.emit();
   }
 }

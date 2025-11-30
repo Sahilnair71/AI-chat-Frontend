@@ -1,8 +1,32 @@
-<aside class="sidebar-container">
+
+<aside class="sidebar-container" [class.open]="isOpen">
   <div class="sidebar-header">
+    <!-- Close button for mobile -->
+    <button 
+      mat-icon-button 
+      class="sidebar-close-btn md:hidden"
+      (click)="closeSidebar()"
+      aria-label="Close sidebar"
+    >
+    </button>
+    
     <app-new-button (create)="newChat()"></app-new-button>
   </div>
   <div class="divider"></div>
+
+  <!-- Navigation Menu Items (Mobile only - shown below New Chat button) -->
+  <div class="sidebar-navigation hidden md:hidden">
+    <a class="nav-item" (click)="closeSidebar()">
+      <span>Chat</span>
+    </a>
+    <a class="nav-item" (click)="closeSidebar()">
+      <span>Img-Generator</span>
+    </a>
+    <a class="nav-item" (click)="closeSidebar()">
+      <span>HR Engine</span>
+    </a>
+  </div>
+  <div class="divider hidden md:hidden"></div>
 
   <div class="sidebar-auto-save">
     <div class="auto-save-control">
@@ -14,8 +38,6 @@
       ></mat-slide-toggle>
     </div>
   </div>
-  
- 
   
   <div class="sidebar-search">
     <app-chat-search (search)="updateSearch($event)"></app-chat-search>

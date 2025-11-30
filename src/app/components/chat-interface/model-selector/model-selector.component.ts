@@ -5,6 +5,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MobileSelectorsDialogData, MobileSelectorsDialogResult,MobileSelectorsDialogboxComponent } from '../mobile-selectors-dialogbox/mobile-selectors-dialogbox.component';
 
 @Component({
   selector: 'app-model-selector',
@@ -44,6 +46,8 @@ export class ModelSelectorComponent {
     'Product D'
   ];
 
+  private dialog = inject(MatDialog);
+
   onModelChange(model: string) {
     this.modelChange.emit(model);
   }
@@ -58,5 +62,41 @@ export class ModelSelectorComponent {
 
   onProductChange(product: string) {
     this.productChange.emit(product);
+  }
+  openMobileSelectorsDialog(): void {
+    const dialogData: MobileSelectorsDialogData = {
+      selectedModel: this.selectedModel,
+      selectedProvider: this.selectedProvider,
+      creativity: this.creativity,
+      selectedProduct: this.selectedProduct,
+      models: this.models,
+      providers: this.providers,
+      creativityLevels: this.creativityLevels,
+      products: this.products
+    };
+
+    const dialogRef = this.dialog.open(MobileSelectorsDialogboxComponent, {
+      width: '90%',
+      maxWidth: '400px',
+      data: dialogData,
+      panelClass: 'mobile-selectors-dialog'
+    });
+
+    dialogRef.afterClosed().subscribe((result: MobileSelectorsDialogResult | undefined) => {
+      if (result) {
+        if (result.model !== this.selectedModel) {
+          this.onModelChange(result.model);
+        }
+        if (result.provider !== this.selectedProvider) {
+          this.onProviderChange(result.provider);
+        }
+        if (result.creativity !== this.creativity) {
+          this.onCreativityChange(result.creativity);
+        }
+        if (result.product !== this.selectedProduct) {
+          this.onProductChange(result.product);
+        }
+      }
+    });
   }
 }

@@ -8,7 +8,7 @@
 
 ::ng-deep .new-chat-button {
   /* Light mode - keep default primary color */
-  @apply text-black hover:bg-gray-200 !important ;
+  @apply text-black hover:bg-gray-200  ;
 
   /* Dark mode - white button */
   @apply dark:bg-gray-800 dark:text-white dark:hover:bg-gray-900;

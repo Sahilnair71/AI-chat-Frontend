@@ -1,0 +1,56 @@
+.mobile-selectors-dialog-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  .dialog-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: inherit;
+  }
+
+  .close-button {
+    margin-left: auto;
+  }
+
+  .dialog-body {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .selector-field-full {
+    width: 100%;
+  }
+
+  .dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+  }
+
+  :host-context(body.dark) {
+    .dialog-header,
+    .dialog-actions {
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .dialog-title {
+      color: #f8fafc;
+    }
+  }
