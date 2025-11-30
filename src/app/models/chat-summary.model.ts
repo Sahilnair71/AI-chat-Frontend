@@ -3,6 +3,7 @@ export interface ChatSummary {
     title: string;
     provider: string;
     model: string;
+    product: string;
     lastUpdated: string;
     pinned: boolean;
   }

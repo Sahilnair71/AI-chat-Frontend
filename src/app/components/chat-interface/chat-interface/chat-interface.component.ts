@@ -52,6 +52,7 @@ export class ChatInterfaceComponent {
         }
       } else if (!activeChat && !this.isCreatingNewChat) {
         this.messages.set([]);
+        this.selectedProduct.set('All Products'); 
       }
     });
   }
@@ -193,11 +194,9 @@ export class ChatInterfaceComponent {
 
   onProductChange(product: string) {
     this.selectedProduct.set(product);
-    // Optionally save to chat if you want to persist it
     const chat = this.currentChat();
     if (chat) {
-      // You might want to add product to ChatSummary model and save it
-      // this.chatStore.updateChatProduct(chat.id, product);
+      this.chatStore.updateChatProduct(chat.id, product);
     }
   }
 
@@ -211,6 +210,7 @@ export class ChatInterfaceComponent {
         title: title || 'New Chat',
         provider,
         model,
+        product: this.selectedProduct(),
         lastUpdated: new Date().toISOString(),
         pinned: false,
       };

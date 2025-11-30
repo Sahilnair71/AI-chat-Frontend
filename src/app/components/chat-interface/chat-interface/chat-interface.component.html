@@ -46,7 +46,7 @@
                   <h3 class="text-xl font-semibold dark:text-white">Start a conversation</h3>
                   <p class="text-slate-500 dark:text-gray-400">
                     <ng-container *ngIf="selectedProduct() === 'All Products'; else productMessage">
-                      Ask anything to get started
+                      Ask anything to get started or select a Product from above to ask about it
                     </ng-container>
                     <ng-template #productMessage>
                       Ask anything about the {{ selectedProduct() }}

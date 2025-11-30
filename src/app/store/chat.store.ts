@@ -78,6 +78,14 @@ import {
         });
       },
 
+      updateChatProduct(chatId: string, product: string) {
+        patchState(store, {
+          chats: store.chats().map((chat) =>
+            chat.id === chatId ? { ...chat, product } : chat
+          ),
+        });
+      },
+
       renameChat(id: string, title: string) {
         patchState(store, {
           chats: store.chats().map((chat) =>
