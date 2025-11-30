@@ -71,7 +71,8 @@
               "baseHref": "/AI-chat-Frontend/",
               "outputHashing": "all",
               "optimization": true,
-              "sourceMap": false
+              "sourceMap": false,
+              "outputMode": "browser"
             },
             "development": {
               "optimization": false,
