@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:gh-pages": "ng build --configuration production --base-href /AI-chat-Frontend/ --no-ssr",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:ai-chat-bot": "node dist/ai-chat-bot/server/server.mjs"
