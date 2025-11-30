@@ -1,0 +1,10 @@
+<div class="question-card">
+    <div class="question-header">
+      <mat-icon class="user-icon">person</mat-icon>
+      <span class="question-label">You</span>
+      <span class="question-time">{{ message.timestamp | date:'short' }}</span>
+    </div>
+    <div class="question-content">
+      <p>{{ message.content }}</p>
+    </div>
+  </div>

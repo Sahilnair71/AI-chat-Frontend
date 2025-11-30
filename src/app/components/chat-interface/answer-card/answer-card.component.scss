@@ -1,0 +1,44 @@
+.answer-card {
+    @apply mb-6 flex flex-col items-start;
+  
+    .answer-header {
+      @apply flex items-center gap-2 mb-2 text-sm text-slate-600 dark:text-gray-400;
+  
+      .assistant-icon {
+        @apply text-lg;
+      }
+  
+      .answer-label {
+        @apply font-medium;
+      }
+  
+      .answer-time {
+        @apply text-xs opacity-70;
+      }
+    }
+  
+    .answer-content {
+      @apply bg-slate-100 dark:bg-gray-800 text-slate-900 dark:text-white rounded-lg p-4 max-w-2xl shadow-sm;
+      @apply break-words;
+  
+      .message-text {
+        @apply mb-0 leading-relaxed dark:text-gray-100 whitespace-pre-wrap;
+      }
+    }
+  
+    .streaming-indicator {
+      @apply flex space-x-1 mt-2;
+  
+      span {
+        @apply w-2 h-2 bg-slate-400 dark:bg-gray-500 rounded-full animate-pulse;
+  
+        &:nth-child(2) {
+          animation-delay: 0.2s;
+        }
+  
+        &:nth-child(3) {
+          animation-delay: 0.4s;
+        }
+      }
+    }
+  }

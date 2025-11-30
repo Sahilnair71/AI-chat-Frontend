@@ -4,11 +4,12 @@ import { isPlatformBrowser } from '@angular/common';
 import { ThemeStore } from './store/themestore';
 import { SidebarShellComponent } from './components/sidebar/sidebar-shell/sidebar-shell.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ChatInterfaceComponent } from './components/chat-interface/chat-interface/chat-interface.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, SidebarShellComponent],
+  imports: [RouterOutlet, NavbarComponent, SidebarShellComponent, ChatInterfaceComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

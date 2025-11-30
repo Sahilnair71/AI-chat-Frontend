@@ -13,12 +13,14 @@ import {
   
   interface ChatState {
     chats: ChatSummary[];
+    activeChatId: string | null;
     isLoading: boolean;
     error: string | null;
   }
   
   const initialState: ChatState = {
     chats: [],
+    activeChatId: null,
     isLoading: false,
     error: null,
   };
@@ -28,10 +30,16 @@ import {
     withState(initialState),
   
     withComputed((store) => ({
-        pinnedChats: computed(() => store.chats().filter((c) => c.pinned)),
-        recentChats: computed(() => store.chats().filter((c) => !c.pinned)),
-        hasChats: computed(() => store.chats().length > 0),
-        allChats: computed(() => store.chats()), 
+      pinnedChats: computed(() => store.chats().filter((c) => c.pinned)),
+      recentChats: computed(() => store.chats().filter((c) => !c.pinned)),
+      hasChats: computed(() => store.chats().length > 0),
+      allChats: computed(() => store.chats()),
+      activeChat: computed(() => {
+        const id = store.activeChatId();
+        if (!id) return null;
+        return store.chats().find(c => c.id === id) || null;
+      }),
+      activeChatId: computed(() => store.activeChatId()),
     })),
   
     withMethods((store, api = inject(ChatService)) => ({
@@ -47,10 +55,29 @@ import {
             next: (list) => patchState(store, { chats: list }),
             error: () =>
               patchState(store, {
-                error: 'Fehler beim Laden der Chats.',
+                error: 'Error loading chats',
               }),
           });
       },
+      setActiveChat(id: string | null) {
+        patchState(store, { activeChatId: id });
+      },
+
+      addChat(chat: ChatSummary) {
+        patchState(store, {
+          chats: [chat, ...store.chats()],
+          activeChatId: chat.id,
+        });
+      },
+      
+      updateChatModel(chatId: string, model: string, provider: string) {
+        patchState(store, {
+          chats: store.chats().map((chat) =>
+            chat.id === chatId ? { ...chat, model, provider } : chat
+          ),
+        });
+      },
+
       renameChat(id: string, title: string) {
         patchState(store, {
           chats: store.chats().map((chat) =>
@@ -60,8 +87,12 @@ import {
       },
   
       deleteChat(id: string) {
+        const chats = store.chats().filter((chat) => chat.id !== id);
+        const activeId = store.activeChatId();
+        
         patchState(store, {
-          chats: store.chats().filter((chat) => chat.id !== id),
+          chats,
+          activeChatId: activeId === id ? (chats.length > 0 ? chats[0].id : null) : activeId,
         });
       },
   

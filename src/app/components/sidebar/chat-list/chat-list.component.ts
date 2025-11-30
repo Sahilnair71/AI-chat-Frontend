@@ -20,6 +20,7 @@ export class ChatListComponent {
   readonly chats = this.chatStore.allChats;
   readonly isLoading = this.chatStore.isLoading;
   readonly error = this.chatStore.error;
+  readonly activeChatId = this.chatStore.activeChatId;
 
   ngOnInit(): void {
     if (!this.chats().length && !this.isLoading()) {
@@ -43,5 +44,9 @@ export class ChatListComponent {
 
   deleteChat(id: string) {
     this.chatStore.deleteChat(id);
+  }
+  
+  selectChat(id: string) {
+    this.chatStore.setActiveChat(id);
   }
 }

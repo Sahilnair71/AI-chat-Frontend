@@ -1,0 +1,134 @@
+.model-selector-container {
+  @apply flex items-center justify-between gap-3 p-2   bg-white dark:bg-gray-900;
+  
+  .selector-group {
+    @apply flex items-center gap-2 justify-start;
+
+    .selector-field {
+      width: 100px; // Fixed smaller width
+      flex: none;
+      
+      ::ng-deep {
+        .mat-mdc-form-field {
+          font-size: 0.8125rem; // ~13px
+        }
+    
+        
+        .mat-mdc-form-field-infix {
+          min-height: 0px;
+          padding: 0x;
+        }
+        
+        .mat-mdc-select-value {
+          font-size: 0.7125rem;
+        }
+        
+        .mat-mdc-form-field-label {
+          font-size: 0.6875rem; // ~11px
+        }
+        
+        .mat-mdc-form-field-subscript-wrapper {
+          display: none;
+        }
+        .mat-mdc-select-trigger {
+          color: inherit;
+        }
+        .mat-mdc-text-field-wrapper {
+          background-color: transparent;
+        }
+
+     
+        .mat-mdc-form-field.mat-mdc-form-field-type-mat-select {
+          .mat-mdc-text-field-wrapper {
+            background-color: transparent;
+          }
+        }
+     
+      }
+    }
+  }
+
+  .lable-color{
+    @apply dark:text-white !important
+  }
+
+  .ai-briefing-button {
+    @apply flex items-center gap-1.5 dark:border-white dark:text-white ;
+    
+    
+    ::ng-deep .mat-mdc-button-base {
+      padding: 5px 10px;
+      font-size: 0.8125rem;
+    }
+  }
+}
+
+// Dark mode styles - Move outside component scope for better specificity
+::ng-deep {
+  body.dark {
+    .model-selector-container {
+      .selector-field {
+        .mat-mdc-select-value,
+        .mat-mdc-select-trigger,
+        .mat-mdc-select-trigger .mdc-list-item__primary-text {
+          color: #f8fafc !important;
+        }
+        
+        .mat-mdc-form-field-label,
+        .mat-mdc-form-field-label.mdc-floating-label--float-above {
+          color: #9ca3af !important;
+        }
+        
+        .mat-mdc-select-arrow,
+        .mat-mdc-select-arrow-wrapper .mat-mdc-select-arrow {
+          color: #f8fafc !important;
+        }
+        
+        // Target the actual text element inside select
+        .mat-mdc-select-trigger .mdc-list-item__primary-text {
+          color: #f8fafc !important;
+        }
+      }
+    }
+  }
+
+  .mat-mdc-select-panel {
+    background-color: #ffffff !important;
+    .mat-mdc-option {
+      min-height: 32px !important; // Smaller option height (default is 48px)
+      padding: 6px 12px !important; // Reduced padding
+      font-size: 0.8125rem !important; // Smaller font
+      line-height: 1.25rem !important;
+      
+      .mdc-list-item__primary-text {
+        font-size: 0.7125rem !important;
+        line-height: 1.25rem !important;
+      }
+    }
+    
+    padding: 4px 0 !important;
+    min-width: 120px !important;
+  }
+  
+  body.dark {
+    .mat-mdc-select-panel {
+      background-color: #1f2937 !important;
+
+      .mat-mdc-option {
+        color: #f8fafc !important;
+        
+        .mdc-list-item__primary-text {
+          color: #f8fafc !important;
+        }
+
+        &:hover {
+          background-color: #374151 !important;
+        }
+
+        &.mdc-list-item--selected {
+          background-color: #4b5563 !important;
+        }
+      }
+    }
+  }
+}

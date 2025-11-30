@@ -1,0 +1,117 @@
+
+
+.chat-input-container {
+  @apply flex items-center gap-2 p-4 bg-white dark:bg-gray-900;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  @apply dark:border-gray-700;
+
+  
+  // Card styling - applied to both states
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e2e8f0;
+  
+  body.dark & {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+    border-color: #374151;
+  }
+
+  .attach-button {
+    @apply flex-shrink-0;
+    color: #64748b;
+    
+    &:hover {
+      color: #475569;
+    }
+    
+    body.dark & {
+      color: #9ca3af;
+      
+      &:hover {
+        color: #d1d5db;
+      }
+    }
+  }
+
+  .input-field {
+    @apply flex-1;
+
+    ::ng-deep {
+      .mat-mdc-form-field {
+        width: 100%;
+      }
+
+      .mat-mdc-text-field-wrapper {
+        background-color: transparent;
+      }
+
+      // Remove input field border completely
+      .mat-mdc-form-field-outline {
+        display: none !important; // Hide the outline border
+      }
+
+      // Also hide the notched outline (Material Design border)
+      .mdc-notched-outline {
+        display: none !important;
+      }
+
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        display: none !important;
+      }
+
+      .mat-mdc-form-field-focus-overlay {
+        background-color: transparent;
+      }
+
+      input {
+        @apply text-black dark:text-white;
+        border: none !important; // Ensure no border on input itself
+        outline: none !important; // Remove focus outline
+        
+        &::placeholder {
+          color: #94a3b8;
+        }
+      }
+
+      // Dark mode styles
+      body.dark & {
+        input {
+          &::placeholder {
+            color: #9ca3af;
+          }
+        }
+
+        .mat-mdc-form-field-label {
+          color: #9ca3af;
+        }
+
+        .mat-mdc-form-field-label.mdc-floating-label--float-above {
+          color: #9ca3af;
+        }
+      }
+    }
+  }
+
+  .send-button {
+    @apply flex-shrink-0 dark:text-white;
+  }
+
+  // Centered state - ONLY positioning changes, keeps same card styling
+  &.centered {
+    position: absolute !important;
+    bottom: auto !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90% !important;
+    max-width: 600px !important;
+    z-index: 100 !important;
+    // Card styling is inherited from base styles above
+  }
+}

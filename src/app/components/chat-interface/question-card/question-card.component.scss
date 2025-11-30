@@ -1,0 +1,28 @@
+.question-card {
+    @apply mb-6 flex flex-col items-end;
+  
+    .question-header {
+      @apply flex items-center gap-2 mb-2 text-sm text-slate-600 dark:text-gray-400;
+  
+      .user-icon {
+        @apply text-lg;
+      }
+  
+      .question-label {
+        @apply font-medium;
+      }
+  
+      .question-time {
+        @apply text-xs opacity-70;
+      }
+    }
+  
+    .question-content {
+      @apply bg-blue-500 text-white rounded-lg p-4 max-w-2xl shadow-sm;
+      @apply break-words;
+  
+      p {
+        @apply m-0 leading-relaxed;
+      }
+    }
+  }

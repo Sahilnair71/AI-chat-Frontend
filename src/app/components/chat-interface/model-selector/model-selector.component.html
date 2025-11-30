@@ -1,0 +1,43 @@
+<div class="model-selector-container">
+    <div class="selector-group">
+      <mat-form-field appearance="fill" class="selector-field">
+        <mat-label class="lable-color">Model</mat-label>
+        <mat-select [value]="selectedModel" (selectionChange)="onModelChange($event.value)">
+          <mat-option *ngFor="let model of models" [value]="model">
+            {{ model }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="selector-field">
+        <mat-label class="lable-color">Provider</mat-label>
+        <mat-select [value]="selectedProvider" (selectionChange)="onProviderChange($event.value)">
+          <mat-option *ngFor="let provider of providers" [value]="provider">
+            {{ provider }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="selector-field">
+        <mat-label class="lable-color">Creativity</mat-label>
+        <mat-select [value]="creativity" (selectionChange)="onCreativityChange($event.value)">
+          <mat-option *ngFor="let level of creativityLevels" [value]="level.value">
+            {{ level.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="selector-field">
+        <mat-label class="lable-color">Product</mat-label>
+        <mat-select [value]="selectedProduct" (selectionChange)="onProductChange($event.value)">
+          <mat-option *ngFor="let product of products" [value]="product">
+            {{ product }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <button mat-stroked-button class="ai-briefing-button">
+      <mat-icon>psychology</mat-icon>
+      <span>AI-Briefing</span>
+    </button>
+  </div>

@@ -29,3 +29,8 @@
   .state-message {
     @apply flex items-center justify-center h-full p-4;
   }
+  .chat-list {
+    li.active {
+      @apply bg-slate-100 dark:bg-gray-800;
+    }
+  }

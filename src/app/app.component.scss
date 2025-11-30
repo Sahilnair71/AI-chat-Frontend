@@ -2,14 +2,16 @@
   @apply flex mt-16; /* mt-16 = 64px for fixed navbar */
   height: calc(100vh - 64px);
   @apply bg-slate-100 dark:bg-slate-800;
+  overflow: hidden; 
 }
 
 .app-shell__sidebar {
   @apply flex-shrink-0 h-full;
+  
 }
 
 .app-shell__content {
-  @apply flex-1 p-6 bg-white dark:bg-gray-800 border-l border-slate-200 dark:border-gray-700 overflow-y-auto;
+  @apply flex-1 p-6 bg-gray-200 dark:bg-gray-800 border-l border-slate-200 dark:border-gray-700 overflow-y-auto;
 }
 
 /* Mobile: stack sidebar and content */

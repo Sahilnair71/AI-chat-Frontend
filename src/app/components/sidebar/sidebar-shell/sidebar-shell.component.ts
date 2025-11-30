@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ChatStore } from '../../../store/chat.store';
 import { NewButtonComponent } from '../new-button/new-button.component';
 import { ChatSearchComponent } from '../chat-search/chat-search.component';
 import { ChatListComponent } from '../chat-list/chat-list.component';
@@ -13,14 +14,14 @@ import { ChatListComponent } from '../chat-list/chat-list.component';
 })
 export class SidebarShellComponent {
   private readonly query = signal('');
+  private readonly chatStore = inject(ChatStore);
 
   updateSearch(term: string) {
     this.query.set(term);
   }
 
   newChat() {
-    // placeholder – later hook into a dialog or route
-    console.log('Start a new chat');
+    this.chatStore.setActiveChat(null);
   }
 
   get searchTerm() {

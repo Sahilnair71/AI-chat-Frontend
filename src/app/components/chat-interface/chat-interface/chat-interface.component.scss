@@ -1,0 +1,120 @@
+// 
+
+// .chat-wrapper {
+//   @apply flex flex-col bg-white dark:bg-gray-900;
+//   height: 100%;
+//   max-height: 100%;
+//   overflow: hidden;
+//   min-height: 0;
+//   position: relative; // Add this for absolute positioning of centered input
+// }
+
+// .chat-container {
+//   @apply flex flex-col bg-white dark:bg-gray-900;
+//   flex: 1;
+//   min-height: 0;
+//   overflow: hidden;
+//   display: flex;
+//   flex-direction: column;
+//   position: relative; // Add this for absolute positioning of centered input
+// }
+
+// .chat-header {
+//   @apply flex items-center justify-between p-4 border-b border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-900;
+//   flex-shrink: 0;
+// }
+
+// .messages-container {
+//   flex: 1;
+//   min-height: 0;
+//   overflow-y: auto;
+//   overflow-x: hidden;
+//   @apply p-4;
+// }
+
+// .loading-state {
+//   @apply flex items-center justify-center;
+//   height: 100%;
+// }
+
+// .empty-state {
+//   @apply flex flex-col items-center justify-center;
+//   height: 100%;
+  
+//   .empty-icon {
+//     @apply mb-4 text-slate-400 dark:text-gray-500;
+    
+//     mat-icon {
+//       @apply text-6xl;
+//     }
+//   }
+// }
+
+// .messages-list {
+//   @apply space-y-4;
+// }
+
+.chat-wrapper {
+    @apply flex flex-col bg-white dark:bg-gray-900;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden;
+    min-height: 0;
+    position: relative; // Positioning context for absolute children
+  }
+  
+  .chat-container {
+    @apply flex flex-col bg-white dark:bg-gray-900;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative; // CRITICAL: This is the positioning context for centered input
+  }
+  
+  .chat-header {
+    @apply flex items-center justify-between p-4 border-b border-slate-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-500; 
+    flex-shrink: 0;
+
+  }
+  
+  .messages-container {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    @apply p-4;
+    position: relative; // Add this to ensure proper stacking
+  }
+  
+  .loading-state {
+    @apply flex items-center justify-center;
+    height: 100%;
+  }
+  
+  .empty-state {
+    @apply flex flex-col items-center justify-center;
+  height: 100%;
+  min-height: 300px; // Ensure minimum height so it's visible
+  padding-bottom: 250px; // Extra padding when input is centered
+  
+  .empty-icon {
+    @apply mb-4 text-slate-400 dark:text-gray-500;
+    
+    mat-icon {
+      @apply text-6xl;
+    }
+  }
+  
+
+  p {
+    @apply text-center;
+  }
+  }
+  
+  .messages-list {
+    @apply space-y-4;
+    
+  }
+  

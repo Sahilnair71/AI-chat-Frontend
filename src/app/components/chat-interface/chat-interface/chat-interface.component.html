@@ -1,0 +1,86 @@
+<div class="chat-wrapper">
+    <div class="chat-header" *ngIf="currentChat(); else newChatHeader">
+      <div class="header-info">
+        <div >
+          <span>{{ currentChat()?.lastUpdated | date:'d. MMM. yyyy' }}</span>
+          <h2 class="chat-title dark:text-white">{{ currentChat()?.title }}</h2>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span class="saved-text">Saved</span>
+      
+      </div>
+    </div>
+  
+    <!-- Model/Provider Selector -->
+    <app-model-selector
+      [selectedModel]="currentChat()?.model || 'GPT-4 Turbo'"
+      [selectedProvider]="currentChat()?.provider || 'Azure'"
+      [creativity]="'1.0'"
+      (modelChange)="onModelChange($event)"
+      (providerChange)="onProviderChange($event)"
+      (creativityChange)="onCreativityChange($event)"
+      (productChange)="onProductChange($event)"
+    ></app-model-selector>
+  
+    <ng-template #newChatHeader>
+      <!-- Empty template for new chat header -->
+    </ng-template>
+  
+    <!-- Chat Container with proper flex layout -->
+    <div class="chat-container">
+      <!-- Messages Area -->
+      <div class="messages-container">
+        <ng-container *ngIf="isLoadingMessages(); else messagesContent">
+          <div class="loading-state">
+            <div class="text-sm text-slate-500 dark:text-gray-400">Loading messages...</div>
+          </div>
+        </ng-container>
+  
+        <ng-template #messagesContent>
+            <ng-container *ngIf="messages().length === 0; else messagesList">
+                <div class="empty-state">
+                  <div class="empty-icon">
+                    <mat-icon>chat_bubble_outline</mat-icon>
+                  </div>
+                  <h3 class="text-xl font-semibold dark:text-white">Start a conversation</h3>
+                  <p class="text-slate-500 dark:text-gray-400">
+                    <ng-container *ngIf="selectedProduct() === 'All Products'; else productMessage">
+                      Ask anything to get started
+                    </ng-container>
+                    <ng-template #productMessage>
+                      Ask anything about the {{ selectedProduct() }}
+                    </ng-template>
+                  </p>
+                </div>
+              </ng-container>
+  
+          <ng-template #messagesList>
+            <div class="messages-list">
+              <ng-container *ngFor="let message of messages()">
+                <app-question-card 
+                  *ngIf="message.role === 'user'" 
+                  [message]="message"
+                ></app-question-card>
+                
+                <app-answer-card 
+                  *ngIf="message.role === 'assistant'" 
+                  [message]="message"
+                  [isStreaming]="isStreaming() && message.id === messages()[messages().length - 1]?.id"
+                ></app-answer-card>
+              </ng-container>
+            </div>
+          </ng-template>
+        </ng-template>
+      </div>
+
+  
+      <!-- Input Area - Positioned absolutely when centered, normally when not -->
+      <app-chat-input 
+        [isLoading]="isLoading()"
+        [isCentered]="messages().length === 0 && !currentChat()"
+        (sendMessage)="onSendMessage($event)"
+        (fileAttach)="onFileAttach()"
+      ></app-chat-input>
+    </div>
+  </div>

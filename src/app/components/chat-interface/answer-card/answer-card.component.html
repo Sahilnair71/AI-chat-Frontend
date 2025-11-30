@@ -1,0 +1,15 @@
+<div class="answer-card">
+    <div class="answer-header">
+      <mat-icon class="assistant-icon">smart_toy</mat-icon>
+      <span class="answer-label">Assistant</span>
+      <span class="answer-time">{{ message.timestamp | date:'short' }}</span>
+    </div>
+    <div class="answer-content">
+      <p class="message-text">{{ message.content }}</p>
+      <div *ngIf="isStreaming" class="streaming-indicator">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
