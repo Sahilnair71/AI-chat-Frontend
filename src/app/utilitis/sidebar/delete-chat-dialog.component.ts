@@ -19,7 +19,7 @@ import { MatButtonModule } from '@angular/material/button';
 
     :host-context(body.dark) ::ng-deep .sidebar-dialog-panel .mat-mdc-dialog-surface {
       background-color: #0f111a;
-      color: #f8fafc;
+      color: #f8fafc ;
     }
 
     .warning {

@@ -7,7 +7,7 @@
         </div>
       </div>
       <div class="header-actions">
-        <span class="saved-text">Saved</span>
+        <span class="saved-text" *ngIf="chatStore.autoSaveEnabled()">Saved</span>
       
       </div>
     </div>

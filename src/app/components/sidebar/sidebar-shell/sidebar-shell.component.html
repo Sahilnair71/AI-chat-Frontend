@@ -2,8 +2,20 @@
   <div class="sidebar-header">
     <app-new-button (create)="newChat()"></app-new-button>
   </div>
-  
   <div class="divider"></div>
+
+  <div class="sidebar-auto-save">
+    <div class="auto-save-control">
+      <span class="auto-save-label">Auto-Save</span>
+      <mat-slide-toggle 
+        [checked]="autoSaveEnabled"
+        (change)="toggleAutoSave($event)"
+        color="primary"
+      ></mat-slide-toggle>
+    </div>
+  </div>
+  
+ 
   
   <div class="sidebar-search">
     <app-chat-search (search)="updateSearch($event)"></app-chat-search>

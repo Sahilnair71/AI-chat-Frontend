@@ -25,7 +25,7 @@ import { ModelSelectorComponent } from '../model-selector/model-selector.compone
 })
 export class ChatInterfaceComponent {
 
-  private readonly chatStore = inject(ChatStore);
+  public readonly chatStore = inject(ChatStore);
   private readonly mockApi = inject(ReplyMockApiService);
   private readonly messageService = inject(MessageService);
 
@@ -35,6 +35,7 @@ export class ChatInterfaceComponent {
   isLoadingMessages = signal(false);
   selectedProduct = signal<string>('All Products');
   private isCreatingNewChat = false;
+  private unsavedChat: ChatSummary | null = null;
 
   constructor() {
     // React to active chat changes - but skip if we're creating a new chat
@@ -65,7 +66,7 @@ export class ChatInterfaceComponent {
   }
 
    currentChat() {
-    return this.chatStore.activeChat();
+    return this.chatStore.activeChat() || this.unsavedChat;
   }
 
 
@@ -99,11 +100,11 @@ export class ChatInterfaceComponent {
   async onSendMessage(questionText: string) {
     if (!questionText.trim() || this.isLoading()) return;
 
-    let activeChat = this.chatStore.activeChat();
+    let activeChat = this.currentChat()
     
     if (!activeChat) {
       await this.createNewChat(questionText);
-      activeChat = this.chatStore.activeChat();
+      activeChat = this.currentChat();
       if (!activeChat) return;
     }
 
@@ -146,7 +147,10 @@ export class ChatInterfaceComponent {
         this.isLoading.set(false);
         this.isStreaming.set(false);
         this.saveMessages(activeChat!.id);
-        this.chatStore.renameChat(activeChat!.id, activeChat!.title);
+        const storeChat = this.chatStore.activeChat();
+        if (storeChat) {
+          this.chatStore.renameChat(storeChat.id, storeChat.title);
+        }
       },
       error: (error) => {
         console.error('Error streaming answer:', error);
@@ -202,6 +206,7 @@ export class ChatInterfaceComponent {
 
   private async createNewChat(question: string) {
     try {
+      this.isCreatingNewChat = true;
       const title = await this.mockApi.generateTitle().toPromise();
       const { provider, model } = this.mockApi.getRandomProviderAndModel();
       
@@ -215,7 +220,13 @@ export class ChatInterfaceComponent {
         pinned: false,
       };
 
-      this.chatStore.addChat(newChat);
+      if (this.chatStore.autoSaveEnabled()) {
+        this.chatStore.addChat(newChat);
+      } else {
+        this.unsavedChat = newChat;
+      }
+      
+      this.isCreatingNewChat = false;
     } catch (error) {
       console.error('Error creating chat:', error);
       this.isCreatingNewChat=false

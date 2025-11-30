@@ -25,3 +25,15 @@
     @apply min-w-full max-w-full;
   }
 }
+
+.sidebar-auto-save {
+  @apply p-4 flex-shrink-0;
+
+  .auto-save-control {
+    @apply flex items-center justify-between;
+
+    .auto-save-label {
+      @apply text-sm font-medium text-slate-700 dark:text-gray-300;
+    }
+  }
+}

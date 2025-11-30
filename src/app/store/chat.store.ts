@@ -16,6 +16,7 @@ import {
     activeChatId: string | null;
     isLoading: boolean;
     error: string | null;
+    autoSaveEnabled: boolean; 
   }
   
   const initialState: ChatState = {
@@ -23,6 +24,7 @@ import {
     activeChatId: null,
     isLoading: false,
     error: null,
+    autoSaveEnabled: true,
   };
   
   export const ChatStore = signalStore(
@@ -40,6 +42,7 @@ import {
         return store.chats().find(c => c.id === id) || null;
       }),
       activeChatId: computed(() => store.activeChatId()),
+      autoSaveEnabled: computed(() => store.autoSaveEnabled()),
     })),
   
     withMethods((store, api = inject(ChatService)) => ({
@@ -61,6 +64,9 @@ import {
       },
       setActiveChat(id: string | null) {
         patchState(store, { activeChatId: id });
+      },
+      setAutoSave(enabled: boolean) {
+        patchState(store, { autoSaveEnabled: enabled });
       },
 
       addChat(chat: ChatSummary) {
