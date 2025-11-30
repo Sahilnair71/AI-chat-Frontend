@@ -32,8 +32,7 @@ jobs:
         run: npm ci
 
       - name: Build Angular app
-        run: npm run build -- --configuration production --base-href /AI-chat-Frontend/
-
+        run: npm run build:gh-pages
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
