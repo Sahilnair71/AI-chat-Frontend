@@ -63,28 +63,7 @@
   }
 
   // Mobile selector button styles
-  .mobile-selector-button {
-    @apply flex items-center gap-2 dark:border-white dark:text-white dark:border-gray-600 !important;
-    flex: 1;
-    justify-content: flex-start;
-    text-align: left;
-    
-    .selected-values {
-      @apply text-xs text-gray-500 dark:text-gray-400;
-      margin-left: auto;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      max-width: 150px;
-    }
-    
-    ::ng-deep .mat-mdc-button-base {
-      padding: 8px 12px;
-      font-size: 0.875rem;
-      width: 100%;
-      justify-content: flex-start;
-    }
-  }
+ 
 
   // Show/hide based on screen size
   .desktop-view {
@@ -107,7 +86,7 @@
 
     .ai-briefing-button {
       span {
-        display: none; // Hide text, show only icon
+        display: none; 
       }
       
       ::ng-deep .mat-mdc-button-base {
@@ -119,6 +98,29 @@
         width: 18px !important;
         height: 18px !important;
       }
+    }
+  }
+
+  .mobile-selector-button {
+    @apply flex items-center gap-2 dark:border-white dark:text-white dark:border-gray-600 !important;
+    flex: 1;
+    justify-content: flex-start;
+    text-align: left;
+    
+    .selected-values {
+      @apply text-xs text-gray-500 dark:text-gray-400;
+      margin-left: auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 150px;
+    }
+    
+    ::ng-deep .mat-mdc-button-base {
+      padding: 8px 12px;
+      font-size: 0.875rem;
+      width: 100%;
+      justify-content: flex-start;
     }
   }
 }

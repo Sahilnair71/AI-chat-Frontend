@@ -27,9 +27,8 @@ export class ChatInputComponent {
 
   @Output() sendMessage = new EventEmitter<string>();
   @Output() fileAttach = new EventEmitter<File | null>();
-
-  // Add this input
-@Input() selectedProduct: string | null = null;
+ 
+  @Input() selectedProduct: string | null = null;
 
   onSubmit() {
     const trimmed = this.question.trim();
@@ -47,7 +46,6 @@ export class ChatInputComponent {
   }
 
   onFileClick() {
-    // Trigger file input click
     this.fileInput.nativeElement.click();
   }
 
@@ -58,8 +56,6 @@ export class ChatInputComponent {
       this.attachedFileName = file.name;
       this.fileAttach.emit(file);
       
-      // Update input placeholder or add file name to question
-      // You can customize this behavior
       if (!this.question.trim()) {
         this.question = `📎 ${file.name}`;
       } else {
@@ -72,13 +68,12 @@ export class ChatInputComponent {
     this.attachedFileName = null;
     this.fileInput.nativeElement.value = '';
     this.fileAttach.emit(null);
-    
-    // Remove file name from question if it exists
     this.question = this.question.replace(/\s*📎\s*[^\s]+/g, '').trim();
   }
 
+  
+  // When user focuses on input, emit event to move it to bottom
   onInputFocus() {
-    // When user focuses on input, emit event to move it to bottom
     if (this.isCentered()) {
       this.sendMessage.emit(''); // Empty emit to trigger position change
     }}

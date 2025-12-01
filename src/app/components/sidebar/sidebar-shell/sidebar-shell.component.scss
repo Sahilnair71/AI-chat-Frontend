@@ -33,7 +33,6 @@
     @apply min-w-full max-w-full;
   }
   
-  // CHANGE: Show navigation on mobile only
   .sidebar-navigation {
     display: flex !important;
   }
@@ -43,7 +42,6 @@
   }
 }
 
-// CHANGE: Hide navigation on desktop (default)
 .sidebar-navigation {
   display: none !important;
   

@@ -26,7 +26,6 @@ export class SidebarShellComponent {
 
 
   ngOnInit() {
-    // Load from localStorage
     this.autoSaveEnabled = this.chatStore.autoSaveEnabled();
   }
 

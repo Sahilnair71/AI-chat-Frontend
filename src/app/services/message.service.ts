@@ -29,8 +29,6 @@ export class MessageService {
   }
 
   saveMessage(chatId: string, message: Message): Observable<void> {
-    // In a real app, this would POST to an API
-    // For now, we'll use localStorage
     const stored = localStorage.getItem(`messages_${chatId}`);
     const messages: Message[] = stored ? JSON.parse(stored) : [];
     messages.push(message);

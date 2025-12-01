@@ -4,7 +4,7 @@
   
   .chat-list-container {
     @apply flex-1 overflow-y-auto;
-    /* Custom scrollbar styling */
+   
     &::-webkit-scrollbar {
       width: 6px;
     }

@@ -63,12 +63,5 @@ export class ChatItemComponent {
     });
   }
 
-  // submitRename() {
-  //   this.rename.emit({ id: this.chat.id, title: this.editTitle.trim() });
-  //   this.renameMenuTrigger.closeMenu();
-  // }
 
-  // cancelRename() {
-  //   this.renameMenuTrigger.closeMenu();
-  // }
 }

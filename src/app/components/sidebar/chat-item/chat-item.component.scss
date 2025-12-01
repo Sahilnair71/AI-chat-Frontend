@@ -1,22 +1,4 @@
-// :host {
-//     @apply block;
-//   }
-  
-//   ::ng-deep .dark-menu {
-//     .mat-mdc-menu-panel {
-//       background-color: var(--menu-bg);
-//       color: var(--menu-fg);
-//       box-shadow: 0 6px 24px rgba(0,0,0,0.18);
-//     }
-  
-//     .mat-mdc-menu-item {
-//       @apply dark:text-white;
-      
-//       &:hover {
-//         @apply dark:bg-gray-700;
-//       }
-//     }
-//   }
+
 
 :host {
   @apply block;

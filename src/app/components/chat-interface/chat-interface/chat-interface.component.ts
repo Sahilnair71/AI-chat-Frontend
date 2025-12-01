@@ -69,7 +69,7 @@ export class ChatInterfaceComponent {
     return this.chatStore.activeChat() || this.unsavedChat;
   }
 
-
+//load history chat messages
   private loadMessagesForChat(chatId: string) {
     this.isLoadingMessages.set(true);
     
@@ -171,8 +171,6 @@ export class ChatInterfaceComponent {
       this.chatStore.updateChatModel(chat.id, model, chat.provider);
     }
     else {
-      // If no chat yet, store for when chat is created
-      // You might want to add a signal to store pending model/provider
       console.log('Model changed but no active chat yet');
     }
   }
@@ -191,9 +189,7 @@ export class ChatInterfaceComponent {
   
 
   onFileAttach() {
-    // Just a demo - show a message or notification
     console.log('File attachment feature (demo)');
-    // You could show a toast/snackbar here if you have one
   }
 
   onProductChange(product: string) {
