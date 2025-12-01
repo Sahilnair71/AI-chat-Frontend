@@ -1,0 +1,10 @@
+.logo-image {
+    height: 40px; // Adjust size as needed
+    width: auto;
+    object-fit: contain;
+  }
+  @media (max-width: 1023px) {
+    .logo-image {
+      height: 32px; // Smaller on mobile
+    }
+  }
