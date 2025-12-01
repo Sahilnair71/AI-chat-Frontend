@@ -1,4 +1,11 @@
 <div class="chat-input-container" [class.centered]="isCentered()">
+  <input 
+  #fileInput
+  type="file"
+  style="display: none"
+  (change)="onFileSelected($event)"
+  multiple="false"
+/>
 
   <button 
   mat-icon-button 
@@ -11,12 +18,24 @@
 </button>
     <mat-form-field appearance="outline" class="input-field">
       <input 
-        matInput 
-        [(ngModel)]="question" 
-        placeholder="Ask anything..."
-        (keydown)="onKeyDown($event)"
-        [disabled]="isLoading()"
-      />
+      matInput 
+      [(ngModel)]="question" 
+      [placeholder]="attachedFileName ? 'File attached: ' + attachedFileName : 'Ask anything...'"
+      (keydown)="onKeyDown($event)"
+      [disabled]="isLoading()"
+    />
+    <span *ngIf="attachedFileName" class="file-badge" matSuffix>
+      <span class="file-name">{{ attachedFileName }}</span>
+      <button 
+        mat-icon-button 
+        (click)="removeFile()" 
+        class="remove-file-btn"
+        type="button"
+        aria-label="Remove file"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </span>
     </mat-form-field>
     <button 
       mat-flat-button 

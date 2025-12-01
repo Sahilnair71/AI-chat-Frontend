@@ -115,3 +115,29 @@
     // Card styling is inherited from base styles above
   }
 }
+
+.file-badge {
+  @apply flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900 rounded text-xs;
+  margin-right: 8px;
+  
+  .file-name {
+    @apply text-blue-700 dark:text-blue-300;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .remove-file-btn {
+    @apply text-blue-700 dark:text-blue-300;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    
+    mat-icon {
+      font-size: 16px;
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
