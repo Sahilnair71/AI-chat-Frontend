@@ -33,6 +33,7 @@ export class SidebarShellComponent {
     const isChecked = event.checked;
     this.autoSaveEnabled = isChecked;
     this.chatStore.setAutoSave(isChecked);
+    console.log('autoSaveEnabled');
   }
 
   updateSearch(term: string) {
@@ -40,7 +41,7 @@ export class SidebarShellComponent {
   }
 
   newChat() {
-    this.chatStore.setActiveChat(null);
+    this.chatStore.requestNewChat();
     this.closeSidebar();
   }
   closeSidebar() {

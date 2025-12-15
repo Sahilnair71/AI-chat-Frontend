@@ -35,15 +35,22 @@ export class ChatInterfaceComponent {
   isLoadingMessages = signal(false);
   selectedProduct = signal<string>('All Products');
   private isCreatingNewChat = false;
-  private unsavedChat: ChatSummary | null = null;
+  private unsavedChat = signal<ChatSummary | null>(null);
+  private previousActiveChatId: string | null = null;
+  private previousUnsavedChatId: string | null = null;
+  private previousNewChatRequested: number = 0; 
 
   constructor() {
     // React to active chat changes - but skip if we're creating a new chat
     effect(() => {
       const activeChat = this.chatStore.activeChat();
+      const activeChatId = this.chatStore.activeChatId();
+      const newChatRequested = this.chatStore.newChatRequested(); // Watch this counter
+      const unsavedChat = this.unsavedChat(); // Read signal
+      const currentUnsavedChatId = unsavedChat?.id || null;
+      
       if (activeChat && !this.isCreatingNewChat) {
         // Only load messages if we're switching to an existing chat
-        // Don't reload if we just created this chat
         const currentChatId = activeChat.id;
         const currentMessages = this.messages();
         
@@ -51,9 +58,28 @@ export class ChatInterfaceComponent {
         if (currentMessages.length === 0 || currentMessages[0]?.chatId !== currentChatId) {
           this.loadMessagesForChat(currentChatId);
         }
-      } else if (!activeChat && !this.isCreatingNewChat) {
-        this.messages.set([]);
-        this.selectedProduct.set('All Products'); 
+        this.previousActiveChatId = activeChatId;
+        this.previousUnsavedChatId = null;
+        this.previousNewChatRequested = newChatRequested; // Reset tracking
+      } else if (activeChatId === null && !this.isCreatingNewChat) {
+        const wasSwitchingAwayFromSavedChat = this.previousActiveChatId !== null;
+        const unsavedChatWasCleared = this.previousUnsavedChatId !== null && currentUnsavedChatId === null;
+        // Only clear if newChatRequested actually INCREASED (button was just clicked)
+        const newChatButtonClicked = newChatRequested > this.previousNewChatRequested;
+        
+        // Clear if: switching from saved chat, unsaved chat was cleared, OR new chat button was just clicked
+        if (wasSwitchingAwayFromSavedChat || unsavedChatWasCleared || newChatButtonClicked) {
+          this.messages.set([]);
+          this.selectedProduct.set('All Products');
+          this.unsavedChat.set(null);
+          this.previousUnsavedChatId = null;
+        } else {
+          this.previousUnsavedChatId = currentUnsavedChatId;
+        }
+        
+        // Update tracking
+        this.previousActiveChatId = null;
+        this.previousNewChatRequested = newChatRequested; // Track current value
       }
     });
   }
@@ -66,7 +92,7 @@ export class ChatInterfaceComponent {
   }
 
    currentChat() {
-    return this.chatStore.activeChat() || this.unsavedChat;
+    return this.chatStore.activeChat() || this.unsavedChat();
   }
 
 //load history chat messages
@@ -219,7 +245,8 @@ export class ChatInterfaceComponent {
       if (this.chatStore.autoSaveEnabled()) {
         this.chatStore.addChat(newChat);
       } else {
-        this.unsavedChat = newChat;
+        this.unsavedChat.set(newChat);
+        console.log('unsavedChat', this.unsavedChat());
       }
       
       this.isCreatingNewChat = false;

@@ -17,6 +17,7 @@ import {
     isLoading: boolean;
     error: string | null;
     autoSaveEnabled: boolean; 
+    newChatRequested: number;
   }
   
   const initialState: ChatState = {
@@ -25,6 +26,7 @@ import {
     isLoading: false,
     error: null,
     autoSaveEnabled: true,
+    newChatRequested: 0
   };
   
   export const ChatStore = signalStore(
@@ -41,8 +43,8 @@ import {
         if (!id) return null;
         return store.chats().find(c => c.id === id) || null;
       }),
-      activeChatId: computed(() => store.activeChatId()),
-      autoSaveEnabled: computed(() => store.autoSaveEnabled()),
+      // activeChatId: computed(() => store.activeChatId()),
+      // autoSaveEnabled: computed(() => store.autoSaveEnabled()),
     })),
   
     withMethods((store, api = inject(ChatService)) => ({
@@ -67,6 +69,13 @@ import {
       },
       setAutoSave(enabled: boolean) {
         patchState(store, { autoSaveEnabled: enabled });
+      },
+      requestNewChat() {
+        // Increment counter to trigger effects even when activeChatId is already null
+        patchState(store, { 
+          activeChatId: null,
+          newChatRequested: store.newChatRequested() + 1 
+        });
       },
 
       addChat(chat: ChatSummary) {
